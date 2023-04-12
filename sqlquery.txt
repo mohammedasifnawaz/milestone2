@@ -1,0 +1,98 @@
+USE [Bee]
+GO
+
+INSERT INTO [dbo].[Bee Colony Census Data by County]
+           ([index]
+           ,[Year]
+           ,[Period]
+           ,[State]
+           ,[State ANSI]
+           ,[Ag District]
+           ,[Ag District Code]
+           ,[County]
+           ,[County ANSI]
+           ,[Value]
+           ,[CV (%)])
+     VALUES
+           ('999','2012','END OF DEC','LOUISIANA','22','EAST CENTRAL','60','WASHINGTON','118.0','500','73.5')
+GO
+
+
+
+
+USE [Bee]
+GO
+
+INSERT INTO [dbo].[Bee Colony Survey Data by State]
+           ([index]
+           ,[Year]
+           ,[Period]
+           ,[Week Ending]
+           ,[State]
+           ,[State ANSI]
+           ,[Watershed]
+           ,[Data Item]
+           ,[Value]
+           ,[CV (%)])
+     VALUES
+           ('1000','2016','JAN THRU MAR','','INDIANA','18','','"LOSS',' COLONY COLLAPSE DISORDER"','100,')
+GO
+
+
+USE [Bee]
+GO
+
+UPDATE [dbo].[Bee Colony Census Data by County]
+   SET 
+      [Year] = '2003'
+    
+ WHERE [index] = '7829'
+GO
+
+
+
+USE [Bee]
+GO
+
+DELETE FROM [dbo].[Bee Colony Census Data by County]
+      WHERE [index] = '7829'
+GO
+
+
+
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [index]
+      ,[Year]
+      ,[Period]
+      ,[State]
+      ,[State ANSI]
+      ,[Ag District]
+      ,[Ag District Code]
+      ,[County]
+      ,[County ANSI]
+      ,[Value]
+      ,[CV (%)]
+  FROM [Bee].[dbo].[Bee Colony Census Data by County]
+
+
+
+SELECT count(*) total_Value
+  FROM [Bee].[dbo].[Bee Colony Census Data by County]
+
+
+SELECT count(*) Total_value  
+FROM [Bee].[dbo].[Bee Colony Survey Data by State]
+
+
+
+SELECT [Bee].[dbo].[Bee Colony Survey Data by State].Value
+  FROM [Bee].[dbo].[Bee Colony Census Data by County]
+  inner join  [Bee].[dbo].[Bee Colony Survey Data by State]
+  on [Bee].[dbo].[Bee Colony Survey Data by State].value = [Bee].[dbo].[Bee Colony Census Data by County].Value
+
+SELECT *
+FROM [Bee].[dbo].[Bee Colony Census Data by County]
+select *
+from [Bee].[dbo].[Bee Colony Survey Data by State]
+  
+
